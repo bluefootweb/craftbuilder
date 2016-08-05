@@ -64,10 +64,13 @@ git clone https://github.com/ethercreative/SimpleMap simplemap
 cd ../..
 
 tablename=$username'_cms'
-MYSQL=`which mysql`
+
+mysql.server restart
   
 mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS $tablename"
 mysql -u root -proot $tablename < bluefoot-dev.sql
+
+mysql.server restart
 
 rm bluefoot-dev.sql
 
