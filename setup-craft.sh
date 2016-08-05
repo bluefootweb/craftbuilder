@@ -1,28 +1,12 @@
 #!/bin/sh
 
-function error_exit
-{
-#   ----------------------------------------------------------------
-#   Function for exit due to fatal program error
-#   	Accepts 1 argument:
-#   		string containing descriptive error message
-#   ----------------------------------------------------------------
 
-    echo "${1:-"Unknown Error"}" 1>&2
-    exit 1
-}
-
-echo $PWD
-read -rsp $'Press enter to continue...\n'
-
-
-cd $DIR
-
+cd $PWD
 
 read -p "Enter a site username : " username
 git clone git@github.com:bluefootweb/bluefoot-dev.git $username
 
-cd $DIR/$username/craft
+cd $PWD/$username/craft
 
 ./github-downloader.sh https://github.com/pixelandtonic/Craft-Release/tree/master/app
 
@@ -77,7 +61,7 @@ rm -rf simplemap
 git clone https://github.com/ethercreative/SimpleMap simplemap
 
 
-cd $DIR/$username
+cd $PWD/$username
 
 tablename=$username'_cms'
 MYSQL=`which mysql`
@@ -94,7 +78,7 @@ mkdir storage
 cd config
 
 find . -type f -name 'db.php' -exec sed -i '' s/bluefootuser/$username/ {} +
-cd $DIR/$username
+cd $PWD/$username
 
 npm install
 
