@@ -18,7 +18,7 @@ read -rsp $'Press enter to continue...\n'
 
 cd $DIR
 
-clear
+
 read -p "Enter a site username : " username
 git clone git@github.com:bluefootweb/bluefoot-dev.git $username
 
