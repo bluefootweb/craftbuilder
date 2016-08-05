@@ -6,7 +6,7 @@ cd $PWD
 read -p "Enter a site username : " username
 git clone git@github.com:bluefootweb/bluefoot-dev.git $username
 
-cd $PWD/$username/craft
+cd $username/craft
 
 ./github-downloader.sh https://github.com/pixelandtonic/Craft-Release/tree/master/app
 
@@ -61,7 +61,7 @@ rm -rf simplemap
 git clone https://github.com/ethercreative/SimpleMap simplemap
 
 
-cd $PWD/$username
+cd ../..
 
 tablename=$username'_cms'
 MYSQL=`which mysql`
@@ -78,7 +78,7 @@ mkdir storage
 cd config
 
 find . -type f -name 'db.php' -exec sed -i '' s/bluefootuser/$username/ {} +
-cd $PWD/$username
+cd ../..
 
 npm install
 
