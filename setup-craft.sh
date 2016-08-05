@@ -1,3 +1,18 @@
+#!/bin/sh
+
+function error_exit
+{
+#   ----------------------------------------------------------------
+#   Function for exit due to fatal program error
+#   	Accepts 1 argument:
+#   		string containing descriptive error message
+#   ----------------------------------------------------------------
+
+    echo "${1:-"Unknown Error"}" 1>&2
+    exit 1
+}
+
+
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
