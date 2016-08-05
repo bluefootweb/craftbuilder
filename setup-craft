@@ -1,0 +1,102 @@
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+cd $DIR
+
+clear
+read -p "Enter a site username : " username
+git clone git@github.com:bluefootweb/bluefoot-dev.git $username
+
+cd $DIR/$username/craft
+
+./github-downloader.sh https://github.com/pixelandtonic/Craft-Release/tree/master/app
+
+cd plugins
+
+./github-downloader.sh https://github.com/selvinortiz/craft.patrol/tree/master/patrol
+./github-downloader.sh https://github.com/fruitstudios/Icons/tree/master/fruiticons
+./github-downloader.sh https://github.com/engram-design/ImageResizer/tree/master/imageresizer
+./github-downloader.sh https://github.com/supercool/Pimp-My-Matrix/tree/master/pimpmymatrix
+./github-downloader.sh https://github.com/engram-design/SuperTable/tree/master/supertable
+./github-downloader.sh https://github.com/lindseydiloreto/craft-cpcss/tree/master/cpcss
+./github-downloader.sh https://github.com/lindseydiloreto/craft-cpjs/tree/master/cpjs
+./github-downloader.sh https://github.com/Staplegun-US/craft-video-embed-utility/tree/master/videoembedutility
+./github-downloader.sh https://github.com/jmuspratt/craft-fieldguide/tree/master/fieldguide
+./github-downloader.sh https://github.com/engram-design/CPNav/tree/master/cpnav
+./github-downloader.sh https://github.com/taylordaughtry/Craft-Brief/tree/master/brief
+./github-downloader.sh https://github.com/benjamminf/craft-embedded-assets/tree/master/embeddedassets
+./github-downloader.sh https://github.com/TopShelfCraft/Hue/tree/master/hue
+./github-downloader.sh https://github.com/benjamminf/craft-neo/tree/master/neo
+./github-downloader.sh https://github.com/benjamminf/craft-relabel/tree/master/relabel
+./github-downloader.sh https://github.com/benjamminf/craft-quick-field
+./github-downloader.sh https://github.com/mmikkel/Reasons-Craft/tree/master/reasons
+./github-downloader.sh https://github.com/mmikkel/CpSortableCustomColumns-Craft/tree/master/cpsortcols
+
+wait
+
+rm -rf onedashboard
+git clone https://github.com/boboldehampsink/onedashboard
+
+rm -rf trimmer
+git clone https://github.com/rkingon/Craft-Plugin--Trimmer trimmer
+
+rm -rf amnav
+git clone https://github.com/am-impact/amnav
+
+rm -rf antiallentries
+git clone https://github.com/Harry-Harrison/antiallentries
+
+rm -rf automin
+git clone https://github.com/aelvan/AutoMin-Craft automin
+
+rm -rf seomatic
+git clone https://github.com/nystudio107/seomatic
+
+rm -rf columnwidth
+git clone https://github.com/encryptdesigns/Craft-Column-Widths columnwidth
+
+rm -rf amforms
+git clone https://github.com/am-impact/amforms
+
+rm -rf simplemap
+git clone https://github.com/ethercreative/SimpleMap simplemap
+
+
+cd $DIR/$username
+
+tablename=$username'_cms'
+MYSQL=`which mysql`
+  
+mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS $tablename"
+mysql -u root -proot $tablename < bluefoot-dev.sql
+
+rm bluefoot-dev.sql
+
+cd craft
+
+mkdir storage
+
+cd config
+
+find . -type f -name 'db.php' -exec sed -i '' s/bluefootuser/$username/ {} +
+cd $DIR/$username
+
+npm install
+
+bower install
+
+rm -rf .git
+git init
+git add .
+git commit -m 'Initial Commit'
+hub create bluefootweb/$username -p
+git push origin master
+
+mv *.sublime-project $username.sublime-project
+mv *.sublime-workspace $username.sublime-workspace
+
+open http://$username.dev/admin
