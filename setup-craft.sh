@@ -30,6 +30,7 @@ cd plugins
 ./github-downloader.sh https://github.com/benjamminf/craft-quick-field
 ./github-downloader.sh https://github.com/mmikkel/Reasons-Craft/tree/master/reasons
 ./github-downloader.sh https://github.com/mmikkel/CpSortableCustomColumns-Craft/tree/master/cpsortcols
+./github-downloader.sh https://github.com/mmikkel/CpFieldLinks-Craft/tree/master/cpfieldlinks
 
 wait
 
@@ -60,6 +61,7 @@ git clone https://github.com/am-impact/amforms
 rm -rf simplemap
 git clone https://github.com/ethercreative/SimpleMap simplemap
 
+find . -name .git -exec rm -rf {} \;
 
 cd ../..
 
