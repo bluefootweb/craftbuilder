@@ -93,7 +93,7 @@ rm -rf .git
 git init
 git add .
 git commit -m 'Initial Commit'
-hub create bluefootweb/$username -p
+git remote add origin https://65.40.73.219/bluefoot/$username
 git push origin master
 
 mv *.sublime-project $username.sublime-project
