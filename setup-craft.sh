@@ -93,7 +93,8 @@ rm -rf .git
 git init
 git add .
 git commit -m 'Initial Commit'
-git remote add origin https://65.40.73.219/bluefoot/$username
+curl -d '{"name":"$username","display_name":"$username"}' -H "Authorization: Bearer 63dfe7d5-ffb2-4221-a0dc-f092cfe7da62" -H "Content-Type: application/json" https://repo.bluefoot.com/api/workspaces/bluefoot/projects
+git remote add origin https://repo.bluefoot.com/bluefoot/$username
 git push origin master
 
 mv *.sublime-project $username.sublime-project
