@@ -93,7 +93,7 @@ rm -rf .git
 git init
 git add .
 git commit -m 'Initial Commit'
-curl -d '{"name":""$username"","display_name":""$username""}' -H "Authorization: Bearer 63dfe7d5-ffb2-4221-a0dc-f092cfe7da62" -H "Content-Type: application/json" https://repo.bluefoot.com/api/workspaces/bluefoot/projects
+curl -d '{"name":"'$username'","display_name":"'$username'"}' -H "Authorization: Bearer 63dfe7d5-ffb2-4221-a0dc-f092cfe7da62" -H "Content-Type: application/json" https://repo.bluefoot.com/api/workspaces/bluefoot/projects
 git remote add origin https://repo.bluefoot.com/bluefoot/$username
 git push origin master
 
