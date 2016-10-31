@@ -14,6 +14,7 @@ rm -rf craft/app
 mkdir tmp
 curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o tmp/Craft.zip
 unzip tmp/Craft.zip
+mv Craft-*/craft/app ./craft
 rm -rf tmp
 
 cd craft/plugins
