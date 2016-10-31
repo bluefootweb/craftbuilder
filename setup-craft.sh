@@ -6,15 +6,17 @@ cd '$PWD'
 read -p "Enter a site username : " username
 git clone git@github.com:bluefootweb/bluefoot-dev.git $username
 
+
+cd $username
+
 rm -rf craft/app
 
+mkdir tmp
 curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o tmp/Craft.zip
 unzip tmp/Craft.zip
 rm -rf tmp
 
-cd $username/craft
-
-cd plugins
+cd craft/plugins
 
 ./github-downloader.sh https://github.com/selvinortiz/craft.patrol/tree/master/patrol
 ./github-downloader.sh https://github.com/fruitstudios/Icons/tree/master/fruiticons
