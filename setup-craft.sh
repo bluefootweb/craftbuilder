@@ -6,9 +6,13 @@ cd '$PWD'
 read -p "Enter a site username : " username
 git clone git@github.com:bluefootweb/bluefoot-dev.git $username
 
-cd $username/craft
+rm -rf craft/app
 
-./github-downloader.sh https://github.com/pixelandtonic/Craft-Release/tree/master/app
+curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o tmp/Craft.zip
+unzip tmp/Craft.zip
+rm -rf tmp
+
+cd $username/craft
 
 cd plugins
 
@@ -89,6 +93,9 @@ npm install
 
 bower install
 
+mv *.sublime-project $username.sublime-project
+mv *.sublime-workspace $username.sublime-workspace
+
 rm -rf .git
 git init
 git add .
@@ -97,7 +104,6 @@ curl -d '{"name":"'$username'","display_name":"'$username'"}' -H "Authorization:
 git remote add origin https://repo.bluefoot.com/bluefoot/$username
 git push origin master
 
-mv *.sublime-project $username.sublime-project
-mv *.sublime-workspace $username.sublime-workspace
+
 
 open http://$username.dev/admin
