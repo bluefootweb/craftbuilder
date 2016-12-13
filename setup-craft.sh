@@ -12,10 +12,15 @@ cd $username
 rm -rf craft/app
 
 mkdir tmp
-curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o tmp/Craft.zip
-unzip tmp/Craft.zip
-mv Craft-*/craft/app ./craft
+cd tmp
+curl -L http://buildwithcraft.com/latest.zip?accept_license=yes -o Craft.zip
+unzip Craft.zip
+rm -rf ../craft/app
+mv craft/app ../craft
+cd ..
 rm -rf tmp
+rm -rf Craft-*
+rm -rf __MACOSX
 
 cd craft/plugins
 
