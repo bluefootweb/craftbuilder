@@ -4,7 +4,7 @@
 cd '$PWD'
 
 read -p "Enter a site username : " username
-git clone git@github.com:bluefootweb/bluefoot-dev.git $username
+git clone buddy@repo.bluefoot.com:bluefoot/bluefoot-dev $username
 
 
 cd $username
