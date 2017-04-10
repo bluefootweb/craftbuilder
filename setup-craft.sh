@@ -1,10 +1,10 @@
 #!/bin/sh
 
 
-cd '$PWD'
+cd $PWD
 
 read -p "Enter a site username : " username
-git clone buddy@repo.bluefoot.com:bluefoot/bluefoot-dev $username
+git clone buddy@repo.bluefoot.com:bluefoot/dev $username
 
 
 cd $username
@@ -96,6 +96,8 @@ cd config
 
 find . -type f -name 'db.php' -exec sed -i '' s/bluefootuser/$username/ {} +
 cd ../..
+
+find . -type f -name 'buddy.yml' -exec sed -i '' s/dev/$username/ {} +
 
 npm install
 
