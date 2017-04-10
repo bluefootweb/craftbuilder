@@ -78,13 +78,10 @@ find . -name .git -exec rm -rf {} \;
 cd ../..
 
 tablename=$username'_cms'
-
-mysql.server restart
   
 mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS $tablename"
 mysql -u root -proot $tablename < bluefoot-dev.sql
 
-mysql.server restart
 
 rm bluefoot-dev.sql
 
