@@ -24,7 +24,6 @@ rm -rf __MACOSX
 
 cd craft/plugins
 
-./github-downloader.sh https://github.com/selvinortiz/craft.patrol/tree/master/patrol
 ./github-downloader.sh https://github.com/fruitstudios/Icons/tree/master/fruiticons
 ./github-downloader.sh https://github.com/engram-design/ImageResizer/tree/master/imageresizer
 ./github-downloader.sh https://github.com/supercool/Pimp-My-Matrix/tree/master/pimpmymatrix
@@ -34,8 +33,6 @@ cd craft/plugins
 ./github-downloader.sh https://github.com/Staplegun-US/craft-video-embed-utility/tree/master/videoembedutility
 ./github-downloader.sh https://github.com/jmuspratt/craft-fieldguide/tree/master/fieldguide
 ./github-downloader.sh https://github.com/engram-design/CPNav/tree/master/cpnav
-./github-downloader.sh https://github.com/taylordaughtry/Craft-Brief/tree/master/brief
-./github-downloader.sh https://github.com/benjamminf/craft-embedded-assets/tree/master/embeddedassets
 ./github-downloader.sh https://github.com/TopShelfCraft/Hue/tree/master/hue
 ./github-downloader.sh https://github.com/benjamminf/craft-neo/tree/master/neo
 ./github-downloader.sh https://github.com/benjamminf/craft-relabel/tree/master/relabel
@@ -58,14 +55,9 @@ git clone https://github.com/am-impact/amnav
 rm -rf antiallentries
 git clone https://github.com/Harry-Harrison/antiallentries
 
-rm -rf automin
-git clone https://github.com/aelvan/AutoMin-Craft automin
-
 rm -rf seomatic
 git clone https://github.com/nystudio107/seomatic
 
-rm -rf columnwidth
-git clone https://github.com/encryptdesigns/Craft-Column-Widths columnwidth
 
 rm -rf amforms
 git clone https://github.com/am-impact/amforms
@@ -94,7 +86,7 @@ cd config
 find . -type f -name 'db.php' -exec sed -i '' s/bluefootuser/$username/ {} +
 cd ../..
 
-find . -type f -name 'buddy.yml' -exec sed -i '' s/dev/$username/ {} +
+find . -type f -name 'buddy.yml' -exec sed -i '' s/dev/$username/g {} +
 
 npm install
 
