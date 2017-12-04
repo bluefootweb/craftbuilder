@@ -3,6 +3,7 @@
 
 cd $PWD
 
+read -p "Make sure you have added the site to ServerPilot! Press enter to continue."
 read -p "Enter a site username : " username
 git clone buddy@repo.bluefoot.com:bluefoot/dev $username
 
@@ -90,7 +91,8 @@ find . -type f -name 'buddy.yml' -exec sed -i '' s/dev/$username/g {} +
 
 npm install
 
-bower install
+grunt update-js
+grunt update-css
 
 mv *.sublime-project $username.sublime-project
 mv *.sublime-workspace $username.sublime-workspace
